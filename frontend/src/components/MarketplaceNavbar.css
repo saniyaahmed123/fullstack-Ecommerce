@@ -1,0 +1,261 @@
+.mnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--surface);
+}
+
+.mnav__inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: min(1400px, 100%);
+  min-height: 64px;
+  margin: 0 auto;
+  padding: 8px 24px;
+  background: var(--surface);
+}
+
+.mnav__logo {
+  flex-shrink: 0;
+  color: var(--text);
+  font-family: 'Happy Chunky', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 32px;
+  font-weight: 700;
+  -webkit-text-stroke: 0.3px currentColor;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.mnav__categories {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 8px 8px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.mnav__categories:hover {
+  background: var(--bg);
+}
+
+.mnav__search {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  padding: 0 6px 0 18px;
+  border: 2px solid var(--text);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.mnav__search-input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.mnav__search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.mnav__search-input:focus {
+  outline: none;
+}
+
+.mnav__search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--bg);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.mnav__search-btn:hover {
+  background: var(--brand-hover);
+}
+
+.mnav__right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.mnav__signin {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.mnav__signin:hover {
+  background: var(--bg);
+}
+
+.mnav__icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.mnav__welcome {
+  color: var(--text-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.mnav__cart-count {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  display: grid;
+  min-width: 18px;
+  height: 18px;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.mnav__error {
+  margin: 0;
+  padding: 6px 16px;
+  color: #a32618;
+  font-size: 13px;
+  text-align: center;
+}
+
+.mnav__icon-btn:hover {
+  background: var(--bg);
+}
+
+.mnav__cats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 9px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mnav__cats::-webkit-scrollbar {
+  display: none;
+}
+
+.mnav__cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.mnav__cat:hover {
+  color: var(--brand);
+}
+
+.mnav__cat svg,
+.mnav__icon-btn svg,
+.mnav__categories svg,
+.mnav__search-btn svg {
+  display: block;
+}
+
+.mnav__logo:focus-visible,
+.mnav__categories:focus-visible,
+.mnav__search-btn:focus-visible,
+.mnav__signin:focus-visible,
+.mnav__icon-btn:focus-visible,
+.mnav__cat:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+  .mnav__inner {
+    gap: 14px;
+    padding: 8px 20px;
+  }
+
+  .mnav__cats {
+    gap: 22px;
+    justify-content: flex-start;
+    padding: 9px 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .mnav__inner {
+    gap: 10px;
+    padding: 8px 16px;
+  }
+
+  .mnav__logo {
+    font-size: 26px;
+  }
+
+  .mnav__categories span,
+  .mnav__welcome {
+    display: none;
+  }
+
+  .mnav__signin {
+    padding: 7px 8px;
+    font-size: 13px;
+  }
+
+  .mnav__cats {
+    gap: 18px;
+    padding: 9px 16px;
+  }
+}

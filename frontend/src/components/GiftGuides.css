@@ -1,0 +1,132 @@
+.guides {
+    background: var(--bg);
+}
+
+.guides__band {
+    padding: 46px 32px 150px;
+    background: var(--guide-band);
+    text-align: center;
+}
+
+.guides__title {
+    margin: 0;
+    color: var(--text);
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+.guides__subtitle {
+    max-width: 900px;
+    margin: 14px auto 0;
+    color: var(--text);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.guides__row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+    align-items: start;
+    width: min(1400px, 100%);
+    margin: -128px auto 0;
+    padding: 0 32px 56px;
+}
+
+.guides__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text);
+    text-align: center;
+    text-decoration: none;
+}
+
+.guides__circle {
+    width: 176px;
+    max-width: 100%;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--surface);
+}
+
+.guides__circle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.guides__item:hover .guides__circle img {
+    transform: scale(1.05);
+}
+
+.guides__label {
+    display: inline-block;
+    margin-top: 26px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.guides__arrow {
+    margin-left: 7px;
+    font-weight: 500;
+}
+
+.guides__item:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 6px;
+    border-radius: var(--radius);
+}
+
+@media (max-width: 1100px) {
+    .guides__band {
+        padding: 40px 24px 140px;
+    }
+    .guides__title {
+        font-size: 38px;
+    }
+    .guides__row {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px 24px;
+        margin-top: -112px;
+        padding: 0 24px 48px;
+    }
+    .guides__circle {
+        width: 160px;
+    }
+}
+
+@media (max-width: 640px) {
+    .guides__band {
+        padding: 32px 20px 118px;
+    }
+    .guides__title {
+        font-size: 30px;
+    }
+    .guides__subtitle {
+        margin-top: 10px;
+        font-size: 16px;
+    }
+    .guides__row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 26px 20px;
+        margin-top: -88px;
+        padding: 0 16px 36px;
+    }
+    .guides__circle {
+        width: 128px;
+    }
+    .guides__label {
+        margin-top: 16px;
+        font-size: 15px;
+    }
+}

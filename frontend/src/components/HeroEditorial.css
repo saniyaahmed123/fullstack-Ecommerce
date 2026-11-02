@@ -1,0 +1,159 @@
+.hedit {
+    background: var(--surface);
+    padding: 20px 0;
+    font-family: 'Happy Chunky', 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+.hedit__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    width: min(1400px, 100%);
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.hedit__main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 360px;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--brand) 25%, var(--bg));
+}
+
+.hedit__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    padding: 32px;
+    text-align: center;
+    background-image: url('../assets/heroeditorial3.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hedit__title {
+    margin: 0;
+    color: var(--bg);
+    font-family: inherit;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+.hedit__cta {
+    padding: 13px 28px;
+    border: none;
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.hedit__cta:hover {
+    background: var(--brand);
+    color: var(--bg);
+}
+
+.hedit__main-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hedit__side {
+    position: relative;
+    display: block;
+    min-height: 360px;
+    overflow: hidden;
+    border-radius: var(--radius);
+}
+
+.hedit__side img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hedit__side:hover img {
+    transform: scale(1.03);
+}
+
+.hedit__side-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 22px;
+    background: linear-gradient( to top, color-mix(in srgb, var(--text) 82%, transparent) 0%, color-mix(in srgb, var(--text) 45%, transparent) 35%, transparent 68%);
+}
+
+.hedit__side-overlay p {
+    margin: 0;
+    color: var(--bg);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.hedit__side-overlay span {
+    color: var(--bg);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hedit__side:hover .hedit__side-overlay span {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.hedit__cta:focus-visible,
+.hedit__side:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+}
+
+@media (max-width: 1000px) {
+    .hedit__inner {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+    .hedit__side {
+        min-height: 260px;
+    }
+}
+
+@media (max-width: 640px) {
+    .hedit__inner {
+        padding: 0 16px;
+    }
+    .hedit__main {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+    .hedit__copy {
+        gap: 20px;
+        padding: 32px 24px;
+    }
+    .hedit__title {
+        font-size: 30px;
+    }
+    .hedit__main-img {
+        height: 240px;
+    }
+}
