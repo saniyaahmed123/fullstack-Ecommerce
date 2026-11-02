@@ -1,11 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
+let connection = null
 
-
-async function main() {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log('db connected')
-
-    // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+export default function connectDB() {
+    if (!connection) {
+        connection = mongoose
+            .connect(process.env.MONGO_URI)
+            .then(() => console.log('db connected'))
+            .catch((error) => {
+                connection = null
+                throw error
+            })
+    }
+    return connection
 }
-export default main

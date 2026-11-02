@@ -1,4 +1,5 @@
 import express from 'express'
+import connectDB from './db/db.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
@@ -8,6 +9,7 @@ import authRoute from './routes/auth.routes.js'
 import authRoutes from './routes/OAuth.routes.js'
 import productRoute from './routes/product.route.js'
 import cartRouter from './routes/cart.route.js'
+
 
 import './config/passport.js'
 
@@ -25,6 +27,14 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use(passport.initialize())
+app.use(async (req, res, next) => {
+    try {
+        await connectDB()
+        next()
+    } catch (error) {
+        next(error)
+    }
+})
 
 app.use('/api/auth', authRoute)
 app.use('/api/auth', authRoutes)
