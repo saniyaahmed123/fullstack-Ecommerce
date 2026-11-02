@@ -14,6 +14,7 @@ import './config/passport.js'
 dotenv.config()
 
 const app = express()
+   app.set('trust proxy', 1)
 
 // CORS MUST come before routes
 app.use(cors({

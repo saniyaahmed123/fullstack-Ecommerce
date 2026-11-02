@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import api from '../api/api'
 import { useAuth } from '../auth/AuthContext'
+import GoogleAuthButton from '../components/GoogleAuthButton'
 import './AccountPages.css'
 
 export default function RegisterPage() {
@@ -42,6 +43,8 @@ export default function RegisterPage() {
         <Link className="account-brand" to="/">Handy</Link>
         <h1>Create your account</h1>
         <p>Join Handy to save finds and keep your cart in sync.</p>
+        <GoogleAuthButton />
+        <div className="account-divider"><span>or continue with email</span></div>
         <form className="account-form" onSubmit={submit}>
           <label>
             Name

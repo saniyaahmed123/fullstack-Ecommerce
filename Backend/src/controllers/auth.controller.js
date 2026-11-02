@@ -2,18 +2,20 @@ import userModel from '../models/user.model.js'
 import jwt from 'jsonwebtoken'
 import bycrypt from 'bcryptjs'
 
+const isProd = process.env.NODE_ENV === 'production'
+const cookieOptions = {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax'
+}
+
 function setAuthCookie(res, user) {
     const token = jwt.sign(
         { id: user._id, role: user.role },
         process.env.JWT_SECRET,
         { expiresIn: '7d' }
     )
-    res.cookie('token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    })
+    res.cookie('token', token, { ...cookieOptions, maxAge: 7 * 24 * 60 * 60 * 1000 })
 }
 
 function publicUser(user) {
@@ -47,13 +49,14 @@ export async function registerUser(req, res) {
     setAuthCookie(res, user)
     res.status(201).json({ message: 'successfully registered!', user: publicUser(user) })
 }
+
 export async function loginUser(req, res) {
     const { email, password } = req.body
     if (!email?.trim() || !password) {
         return res.status(400).json({ message: 'email and password are required' })
     }
     const user = await userModel.findOne({ email: email.trim().toLowerCase() })
-    if (!user) {
+    if (!user || !user.password) {
         return res.status(401).json({ message: 'Invalid credentials' })
     }
     const isMatch = await bycrypt.compare(password, user.password)
@@ -61,10 +64,8 @@ export async function loginUser(req, res) {
     if (isMatch) {
         setAuthCookie(res, user)
         res.status(200).json({ message: 'You have successfully logged in!', user: publicUser(user) })
-    }
-    else {
+    } else {
         return res.status(401).json({ message: 'Invalid credentials' })
-
     }
 }
 
@@ -75,10 +76,6 @@ export function googleCallback(req, res) {
 }
 
 export function logoutUser(req, res) {
-    res.clearCookie('token', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax'
-    })
+    res.clearCookie('token', cookieOptions)
     res.status(200).json({ message: 'Successfully logged out' })
 }
